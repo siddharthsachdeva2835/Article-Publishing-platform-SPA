@@ -1,6 +1,8 @@
+import { JwtService } from './../../services/jwt.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private jwt: JwtService , private router: Router) { }
 
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -17,7 +19,12 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit() {
-    this.userService.authUser(this.loginForm.value.username, this.loginForm.value.password);
+    this.userService.authUser(this.loginForm.value.email, this.loginForm.value.password)
+                          .subscribe(obj => {
+                            this.jwt.saveToken(obj.user.email);
+                            console.log(this.jwt.getToken());
+                            this.router.navigate(['home']);
+                          });
   }
 
   ngOnInit() {

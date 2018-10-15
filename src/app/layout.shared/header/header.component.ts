@@ -1,3 +1,4 @@
+import { JwtService } from './../../services/jwt.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(private jwt: JwtService) {
+  }
+
+  logout() {
+    this.jwt.deleteToken();
+    console.log(this.jwt.getToken());
   }
 
   ngOnInit() {
