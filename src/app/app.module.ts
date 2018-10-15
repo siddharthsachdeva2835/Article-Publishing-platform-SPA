@@ -12,7 +12,10 @@ import { ArticleComponent } from './article/article.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { NewArticleComponent } from './new-article/new-article.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpModule } from '../../node_modules/@angular/http';
 
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { NewArticleComponent } from './new-article/new-article.component';
     NewArticleComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
