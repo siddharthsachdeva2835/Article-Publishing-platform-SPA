@@ -1,3 +1,8 @@
 .navbar-nav {
     align-items: flex-end;
 }
+
+.navbar-brand {
+    color: #5CB85C;
+    font-weight: 700;
+}
