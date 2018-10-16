@@ -19,6 +19,18 @@ export class UserService implements OnInit {
   constructor(private api: ApiService, private jwt: JwtService) { }
   articles: any;
 
+  populate() {
+    if (this.jwt.getToken()) {
+      this.api.getRequest('/user')
+      .subscribe(
+        data => this.setAuth(data),
+        err => this.purgeAuth()
+      );
+    } else {
+      this.purgeAuth();
+    }
+  }
+
   authUser(email: string, password: string) {
 
     const obj = {

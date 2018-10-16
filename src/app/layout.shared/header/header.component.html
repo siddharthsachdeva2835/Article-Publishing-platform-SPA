@@ -12,6 +12,15 @@
         <a class="nav-link" routerLink="auth/signup">Signup</a>
       </li>
       <li *ngIf="isAuth" class="nav-item active">
+        <a class="nav-link" routerLink="new-article">New Article</a>
+      </li>
+      <li *ngIf="isAuth" class="nav-item active">
+        <a class="nav-link" routerLink="setting">Setting</a>
+      </li>
+      <li *ngIf="isAuth" class="nav-item active">
+        <a class="nav-link" routerLink="profile">{{user.username}}</a>
+      </li>
+      <li *ngIf="isAuth" class="nav-item active">
         <a class="nav-link" (click)="logout()">Logout</a>
       </li>
     </ul>
