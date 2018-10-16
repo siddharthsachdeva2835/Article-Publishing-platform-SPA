@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.userService.authUser(this.loginForm.value.email, this.loginForm.value.password)
                           .subscribe(obj => {
-                            this.jwt.saveToken(obj.user.email);
-                            console.log(this.jwt.getToken());
+                            this.userService.setAuth(obj.user);
                             this.router.navigate(['home']);
                           });
   }
