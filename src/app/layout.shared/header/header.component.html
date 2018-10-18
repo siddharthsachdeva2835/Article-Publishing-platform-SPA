@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" routerLink="home">Groove</a>
+  <a class="navbar-brand" routerLink="home/global">Groove</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -13,9 +13,6 @@
       </li>
       <li *ngIf="isAuth" class="nav-item active">
         <a class="nav-link" routerLink="new-article">New Article</a>
-      </li>
-      <li *ngIf="isAuth" class="nav-item active">
-        <a class="nav-link" routerLink="setting">Setting</a>
       </li>
       <li *ngIf="isAuth" class="nav-item active">
         <a class="nav-link" routerLink="profile">{{user.username}}</a>

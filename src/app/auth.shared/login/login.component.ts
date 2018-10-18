@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.userService.authUser(this.loginForm.value.email, this.loginForm.value.password)
                           .subscribe(obj => {
                             this.userService.setAuth(obj.user);
-                            this.router.navigate(['home']);
+                            this.router.navigate(['home/global']);
                           });
   }
 

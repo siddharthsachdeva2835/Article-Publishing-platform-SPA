@@ -24,6 +24,26 @@
     border: 1px solid #343A40;
     border-radius: 10px;
     margin: 40px;
-    height: 200px;
+    height: 230px;
     padding: 10px;
+}
+
+.feed-bar {
+    margin: 20px;
+    border-bottom: 0.5px solid #5CB85C; 
+}
+
+.feed-bar li a{
+    padding: 10px;
+    color: #5CB85C;   
+}
+
+.feed-bar li:hover {
+    text-decoration: none;
+    color: #5CB85C;
+    border-bottom: 2px solid #5CB85C;
+}
+
+.feed-bar a:focus:not(:hover) {
+    border-bottom: 2px solid #5CB85C;
 }

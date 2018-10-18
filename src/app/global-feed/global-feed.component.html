@@ -1,0 +1,39 @@
+<div *ngFor="let article of articles" class="container">
+  <div class="row">
+    <div class="col-1">
+      <img class="image" src="{{article.author.image}}" alt="">
+    </div>
+    <div class="col-2 userdetail">
+      <div class="row username">
+        {{article.author.username}}
+      </div>
+      <div class="row date">
+        {{article.createdAt.slice(0,10)}}
+      </div>
+    </div>
+    <div class="col-6"></div>
+    <div class="col-2">
+      <span *ngIf="isAuth" (click)="likeArticle(article)" class="badge" [ngClass]="{'badge-success': article.favorited, 'badge-secondary': !article.favorited}">&hearts;{{article.favoritesCount}}</span>
+    </div>
+  </div>
+  <div class="row article-info">
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          {{article.title}}
+        </h5>
+      </div>
+      <div class="col-12">
+        <p>
+          {{article.description}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8"></div>
+    <a routerLink="/article" class="col-2  btn btn-outline-success btn-sm">
+      read article....
+    </a>
+  </div>
+</div>

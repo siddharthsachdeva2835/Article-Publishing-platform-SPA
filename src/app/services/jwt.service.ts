@@ -8,11 +8,11 @@ export class JwtService {
   constructor() { }
 
   getToken(): string {
-    return window.localStorage['token'];
+    return window.localStorage.getItem('token');
   }
 
   saveToken(token: string) {
-    window.localStorage['token'] = token;
+    window.localStorage.setItem('token', token);
   }
 
   deleteToken() {

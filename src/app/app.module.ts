@@ -17,6 +17,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '../../node_modules/@angular/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { GlobalFeedComponent } from './global-feed/global-feed.component';
+import { YourFeedComponent } from './your-feed/your-feed.component';
+import { TagFeedComponent } from './tag-feed/tag-feed.component';
+import { NoAuthGuard } from './services/no-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     SettingComponent,
     NewArticleComponent,
+    GlobalFeedComponent,
+    YourFeedComponent,
+    TagFeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

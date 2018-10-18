@@ -13,7 +13,7 @@ export class NoAuthGuard implements CanActivate {
 
   canActivate() {
     if (this.jwt.getToken()) {
-      this.router.navigate(['home']);
+      this.router.navigate(['home/global']);
       return false;
     } else {
       return true;

@@ -7,14 +7,26 @@
   </div>
   <div class="row">
     <div class="col-8">
-      
-
-
+      <div class="row feed-bar">
+        <ul class="nav">
+          <li *ngIf="isAuth" class="nav-item active">
+            <a class="nav-link" routerLink="your">Your Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="global">Global Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">#Tag</a>
+          </li>
+        </ul>
+      </div>
+      <router-outlet></router-outlet>
     </div>
     <div class="col-4">
       <div class="tags">
+          <p>Popular Tag</p>
           <span *ngFor="let tag of tags">
-            <div class="btn-outline-success btn btn-sm">{{tag}}</div>
+            <a routerLink="tag/{{tag}}" class="btn-outline-success btn btn-sm">{{tag}}</a>
           </span>
       </div>
     </div>

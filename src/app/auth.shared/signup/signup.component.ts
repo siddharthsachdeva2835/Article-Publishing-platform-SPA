@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.userService.registerUser(this.signupForm.value.username, this.signupForm.value.email, this.signupForm.value.password);
-    this.router.navigate(['login']);
+    this.router.navigate(['home/global']);
   }
 
   ngOnInit() {

@@ -21,9 +21,10 @@ export class UserService implements OnInit {
 
   populate() {
     if (this.jwt.getToken()) {
-      this.api.getRequest('/user')
+      this.api.getRequest('/user', { headers: {Authorization: 'Token ' +  this.jwt.getToken()}})
+      .pipe(map(res => res.json()))
       .subscribe(
-        data => this.setAuth(data),
+        data => this.setAuth(data.user),
         err => this.purgeAuth()
       );
     } else {
@@ -58,6 +59,7 @@ export class UserService implements OnInit {
     this.jwt.saveToken(user.token);
     console.log(this.jwt.getToken());
 
+    console.log(user);
     this.currentUserSubject.next(user);
 
     this.isAuthenticatedSubject.next(true);

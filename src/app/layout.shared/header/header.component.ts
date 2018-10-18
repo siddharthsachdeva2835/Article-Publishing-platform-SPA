@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.purgeAuth();
-    this.router.navigate(['home']);
+    this.router.navigate(['home/global']);
   }
 
   ngOnInit() {

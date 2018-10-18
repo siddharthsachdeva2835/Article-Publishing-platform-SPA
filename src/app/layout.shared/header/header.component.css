@@ -6,3 +6,13 @@
     color: #5CB85C;
     font-weight: 700;
 }
+
+.navbar-brand:hover {
+    color: #5CB85C;
+    font-weight: 700;
+}
+
+.navbar-brand:enabled {
+    color: #5CB85C;
+    font-weight: 700;
+}
