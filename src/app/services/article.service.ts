@@ -56,6 +56,12 @@ export class ArticleService implements OnInit {
     }
   }
 
+  getArticlesFeed() {
+      console.log(this.isAuth);
+      return this.api.getRequest('/articles/feed',
+         { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json().articles));
+  }
+
   ngOnInit() {
   }
 }
