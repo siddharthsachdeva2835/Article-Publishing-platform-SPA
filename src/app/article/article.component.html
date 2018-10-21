@@ -32,8 +32,13 @@
       <input type="text" [(ngModel)]="addcomment">
       <button class="btn btn-success" (click)="addComment()">+</button>
     </div>
-    <div class="col-10 alert m-2 alert-success" *ngFor="let comment of comments">
-      <h4>{{comment.body}}</h4> 
+    <div class="row alert m-2 alert-success" *ngFor="let comment of comments">
+      <div class="col-8">
+        <h4>{{comment.body}}</h4> 
+      </div>
+      <div *ngIf="currentUser.username === comment.author.username" class="col-2">
+        <span (click)="deleteComment(comment.id)">X</span>
+      </div>
     </div>
   </div>
 </div>

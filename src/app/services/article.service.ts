@@ -82,6 +82,11 @@ export class ArticleService implements OnInit {
       { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
   }
 
+  deleteComment(id: string, slug: string) {
+    return this.api.deleteRequest('/articles/' + slug  + '/comments/' + id, {},
+      { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
+  }
+
   ngOnInit() {
   }
 }

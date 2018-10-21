@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-  comments = [{body: ''}];
+  comments = [{ author: { username: ''}, body: '', id: 0}];
   article = {
     author: {
       bio: '',
@@ -29,6 +29,7 @@ export class ArticleComponent implements OnInit {
   };
   isAuth: boolean;
   addcomment: string;
+  currentUser: any;
   constructor(private articleService: ArticleService
                 , private activatedRoute: ActivatedRoute
                   , private userService: UserService) { }
@@ -36,6 +37,19 @@ export class ArticleComponent implements OnInit {
 
     addComment() {
       this.articleService.addComment(this.addcomment, this.article.slug).pipe(map(res => res.json())).subscribe(data => {
+        this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
+        .subscribe(dataa => {
+          this.comments = dataa.comments;
+          console.log(this.comments);
+        });
+      });
+    }
+
+    deleteComment(id) {
+      console.log(id);
+
+      this.articleService.deleteComment(id, this.article.slug)
+      .subscribe(data => {
         this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
         .subscribe(dataa => {
           this.comments = dataa.comments;
@@ -82,6 +96,7 @@ export class ArticleComponent implements OnInit {
       console.log(this.comments);
     });
     this.userService.isAuthenticated.subscribe(data => this.isAuth = data);
+    this.userService.currentUser.subscribe(data => this.currentUser = data);
   }
 
 }
