@@ -34,6 +34,17 @@ export class ArticleService implements OnInit {
       return this.api.getRequest('/articles?tag=' + tag).pipe(map(data => data.json().articles));
     }
   }
+
+  getArticle(slug: string) {
+    if (this.jwt.getToken()) {
+      return this.api.getRequest('/articles/' + slug,
+      { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json()));
+    } else {
+      console.log(slug);
+      return this.api.getRequest('/articles/' + slug).pipe(map(data => data.json()));
+    }
+  }
+
   getAllArticles() {
     if (this.jwt.getToken()) {
       console.log(this.isAuth);

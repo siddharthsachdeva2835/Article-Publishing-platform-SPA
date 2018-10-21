@@ -32,6 +32,14 @@ export class UserService implements OnInit {
     }
   }
 
+  followAuthor(username) {
+    return this.api.postRequest(`/profiles/${username}/follow`, {}, { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
+  }
+
+  unfollowAuthor(username) {
+    return this.api.deleteRequest(`/profiles/${username}/follow`, {}, { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
+  }
+
   authUser(email: string, password: string) {
 
     const obj = {

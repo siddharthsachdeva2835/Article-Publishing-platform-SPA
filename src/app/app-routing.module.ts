@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'new-article', component: NewArticleComponent, canActivate: [AuthGuard]},
-  { path: 'article', component: ArticleComponent},
+  { path: 'article/:slug', component: ArticleComponent},
 
   { path: 'auth', component: AuthComponent , children: [
     { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]},

@@ -1,0 +1,44 @@
+.header-box {
+    height: 200px;
+    color: #F8F9FA;
+}
+.header-box h3 {
+    color: #5CB85C;
+    margin-top: 60px;
+}
+
+.header-box h5 {
+    margin: 20px;
+}
+
+.container {
+    margin:20px;
+    height: 200px;
+    border-bottom: 0.1px solid #E5E5E5;
+    color: #343A40;
+}
+.image {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+.userdetail {
+    margin-left: 10px;
+}
+
+span {
+    cursor: pointer;
+}
+.username  {
+    color: #5CB85C;
+}
+
+.date {
+    font-size: 13px;
+}
+
+.article-info {
+    margin: 20px;
+}
