@@ -73,6 +73,10 @@ export class UserService implements OnInit {
     this.isAuthenticatedSubject.next(true);
   }
 
+  getProfile(username) {
+    return this.api.getRequest('/profiles/' + username).pipe(map(res => res.json()));
+  }
+
   purgeAuth () {
     this.jwt.deleteToken();
     console.log(this.jwt.getToken());

@@ -45,6 +45,11 @@ export class ArticleService implements OnInit {
     }
   }
 
+  getComments(slug: string) {
+    return this.api.getRequest('/articles/' + slug + '/comments',
+    { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json()));
+  }
+
   getAllArticles() {
     if (this.jwt.getToken()) {
       console.log(this.isAuth);
@@ -56,10 +61,25 @@ export class ArticleService implements OnInit {
     }
   }
 
+  getMyArticles(username) {
+      return this.api.getRequest('/articles/?author=' + username,
+         { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json().articles));
+  }
+
+  getFavArticles(username) {
+    return this.api.getRequest('/articles/?favorited=' + username,
+       { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json().articles));
+}
+
   getArticlesFeed() {
       console.log(this.isAuth);
       return this.api.getRequest('/articles/feed',
          { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json().articles));
+  }
+
+  addComment(body: string, slug: string) {
+    return this.api.postRequest('/articles/' + slug  + '/comments', { comment : { body: body}},
+      { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
   }
 
   ngOnInit() {

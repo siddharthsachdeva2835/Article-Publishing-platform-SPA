@@ -3,10 +3,10 @@
     <div class="col-1">
       <img class="image" src="{{article.author.image}}" alt="">
     </div>
-    <div class="col-2 userdetail">
-      <a class="row username" routerLink="/profile/{{article.author.username}}">
+    <div class="col-2 userdetail" >
+      <div class="row username" >
         {{article.author.username}}
-      </a>
+      </div>
       <div class="row date">
         {{article.createdAt.slice(0,10)}}
       </div>

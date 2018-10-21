@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
+  comments = [{body: ''}];
   article = {
     author: {
       bio: '',
@@ -27,10 +28,21 @@ export class ArticleComponent implements OnInit {
     title: ''
   };
   isAuth: boolean;
+  addcomment: string;
   constructor(private articleService: ArticleService
                 , private activatedRoute: ActivatedRoute
                   , private userService: UserService) { }
 
+
+    addComment() {
+      this.articleService.addComment(this.addcomment, this.article.slug).pipe(map(res => res.json())).subscribe(data => {
+        this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
+        .subscribe(dataa => {
+          this.comments = dataa.comments;
+          console.log(this.comments);
+        });
+      });
+    }
 
   likeArticle() {
     if ( !this.article.favorited ) {
@@ -64,6 +76,11 @@ export class ArticleComponent implements OnInit {
                   this.article = data.article;
                   console.log(this.article);
                 });
+    this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
+    .subscribe(data => {
+      this.comments = data.comments;
+      console.log(this.comments);
+    });
     this.userService.isAuthenticated.subscribe(data => this.isAuth = data);
   }
 

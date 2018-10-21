@@ -1,0 +1,54 @@
+.header-box {
+    text-align: center;
+    height: 200px;
+    color: #F8F9FA;
+}
+.header-box h3 {
+    color: #5CB85C;
+    margin-top: 20px;
+}
+
+.header-box h5 {
+    margin: 20px;
+}
+
+.btn {
+    margin-top:2px;
+    margin-left: 2px;
+    border-radius: 7px;
+}
+
+.tags {
+    width: 80%;
+    background-color: #F8F9FA;
+    border: 1px solid #343A40;
+    border-radius: 10px;
+    margin: 40px;
+    height: 230px;
+    padding: 10px;
+}
+
+.feed-bar {
+    margin: 20px;
+    border-bottom: 0.5px solid #5CB85C; 
+}
+
+img {
+    margin-top: 10px; 
+    border-radius: 50%;
+}
+
+.feed-bar li a{
+    padding: 10px;
+    color: #5CB85C;   
+}
+
+.feed-bar li:hover {
+    text-decoration: none;
+    color: #5CB85C;
+    border-bottom: 2px solid #5CB85C;
+}
+
+.feed-bar a:focus:not(:hover) {
+    border-bottom: 2px solid #5CB85C;
+}

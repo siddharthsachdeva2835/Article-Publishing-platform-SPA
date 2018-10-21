@@ -25,7 +25,7 @@ const routes: Routes = [
   ]},
 
   { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/:username', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'new-article', component: NewArticleComponent, canActivate: [AuthGuard]},
   { path: 'article/:slug', component: ArticleComponent},
 
@@ -34,7 +34,7 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent, canActivate: [NoAuthGuard]},
   ]},
 
-  { path: '**' , redirectTo: '/home' }
+  { path: '**' , redirectTo: '/home/global' }
 ];
 
 @NgModule({

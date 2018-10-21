@@ -4,7 +4,7 @@
       <h3>{{article.title}}</h3>
       <div class="row">
         <div class="col-1">
-          <img class="image" src="{{article.author.image}}" alt="">
+          <img class="image" src="{{article.author.image}}">
         </div>
         <div class="col-2 userdetail">
           <div class="row username">
@@ -23,5 +23,17 @@
       </div>
     </div>
     <h2>{{article.description}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h5>Comments : </h5>
+    </div>
+    <div class="col-12 m-3">
+      <input type="text" [(ngModel)]="addcomment">
+      <button class="btn btn-success" (click)="addComment()">+</button>
+    </div>
+    <div class="col-10 alert m-2 alert-success" *ngFor="let comment of comments">
+      <h4>{{comment.body}}</h4> 
+    </div>
   </div>
 </div>

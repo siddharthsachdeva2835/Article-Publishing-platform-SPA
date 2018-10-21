@@ -16,11 +16,13 @@ import { NewArticleComponent } from './new-article/new-article.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '../../node_modules/@angular/http';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GlobalFeedComponent } from './global-feed/global-feed.component';
 import { YourFeedComponent } from './your-feed/your-feed.component';
 import { TagFeedComponent } from './tag-feed/tag-feed.component';
 import { NoAuthGuard } from './services/no-auth-guard.service';
+import { MyarticlesComponent } from './myarticles/myarticles.component';
+import { FavariclesComponent } from './favaricles/favaricles.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +40,14 @@ import { NoAuthGuard } from './services/no-auth-guard.service';
     GlobalFeedComponent,
     YourFeedComponent,
     TagFeedComponent,
+    MyarticlesComponent,
+    FavariclesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [AuthGuard, NoAuthGuard],

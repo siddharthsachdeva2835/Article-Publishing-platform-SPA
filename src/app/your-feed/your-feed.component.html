@@ -4,9 +4,9 @@
       <img class="image" src="{{article.author.image}}" alt="">
     </div>
     <div class="col-2 userdetail">
-      <div class="row username">
+      <a class="row username" routerLink="/profile/{{article.author.username}}">
         {{article.author.username}}
-      </div>
+      </a>
       <div class="row date">
         {{article.createdAt.slice(0,10)}}
       </div>
