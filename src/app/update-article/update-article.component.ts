@@ -11,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class UpdateArticleComponent implements OnInit {
   tagList = [];
   article: any;
-  constructor(private articleService: ArticleService, 
+  constructor(private articleService: ArticleService,
                 private activatedRoute: ActivatedRoute) {
    }
 
@@ -49,7 +49,7 @@ export class UpdateArticleComponent implements OnInit {
     this.articleService.getArticle(this.activatedRoute.snapshot.paramMap.get('slug'))
                 .subscribe(data => {
                   this.article = data.article;
-                  this.articleForm.setValue({title: this.article.title, description: this.article.description, 
+                  this.articleForm.setValue({title: this.article.title, description: this.article.description,
                                               body: this.article.body, tag: ''});
                   for (const tag of this.article.tagList) {
                     this.tagList.push(tag);

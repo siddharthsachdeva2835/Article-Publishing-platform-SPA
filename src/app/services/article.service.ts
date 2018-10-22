@@ -73,13 +73,11 @@ export class ArticleService implements OnInit {
   }
 
   getMyArticles(username) {
-      return this.api.getRequest('/articles/?author=' + username,
-         { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json().articles));
+      return this.api.getRequest('/articles?author=' + username).pipe(map(data => data.json().articles));
   }
 
   getFavArticles(username) {
-    return this.api.getRequest('/articles/?favorited=' + username,
-       { headers: {Authorization: 'Token ' +  this.jwt.getToken()}}).pipe(map(data => data.json().articles));
+    return this.api.getRequest('/articles?favorited=' + username).pipe(map(data => data.json().articles));
 }
 
   getArticlesFeed() {
