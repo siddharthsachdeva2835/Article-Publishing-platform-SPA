@@ -28,7 +28,7 @@ export class GlobalFeedComponent implements OnInit, OnChanges {
         (this.articles.find(x => (x as any).slug === data.article.slug) as any).favoritesCount++;
       });
     } else {
-      this.articleService.unlikeArticle(article.slug).pipe(map(res => res.json())).subscribe(data => {
+      this.articleService.unlikeArticle(article.slug).pipe(map(res => res)).subscribe((data: any) => {
         (this.articles.find(x => (x as any).slug === data.article.slug) as any).favorited = false;
         (this.articles.find(x => (x as any).slug === data.article.slug) as any).favoritesCount--;
       });

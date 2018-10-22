@@ -15,16 +15,22 @@
           </div>
         </div>
         <div class="col-1">
-          <span *ngIf="isAuth" (click)="followAuthor(article)" class="btn btn-sm" [ngClass]="{'btn-success': article.author.following, 'btn-secondary': !article.author.following}">&#43; Author</span>
+          <span *ngIf="isAuth&&currentUser.username !== article.author.username" (click)="followAuthor(article)" class="btn btn-sm" [ngClass]="{'btn-success': article.author.following, 'btn-secondary': !article.author.following}">&#43; Author</span>
         </div>
         <div class="col-1">
-          <span *ngIf="isAuth" (click)="likeArticle(article)" class="btn btn-sm" [ngClass]="{'btn-success': article.favorited, 'btn-secondary': !article.favorited}">&hearts; Article ({{article.favoritesCount}})</span>
+          <span *ngIf="isAuth&&currentUser.username !== article.author.username" (click)="likeArticle(article)" class="btn btn-sm" [ngClass]="{'btn-success': article.favorited, 'btn-secondary': !article.favorited}">&hearts; Article ({{article.favoritesCount}})</span>
+        </div>
+        <div class="col-1">
+          <span *ngIf="isAuth&&currentUser.username === article.author.username" (click)="editArticle()" class="btn btn-sm btn-success">Edit Article</span>
+        </div>
+        <div class="col-1">
+          <span *ngIf="isAuth&&currentUser.username === article.author.username" (click)="deleteArticle(article)" class="btn btn-sm btn-success">Delete Article</span>
         </div>
       </div>
     </div>
     <h2>{{article.description}}</h2>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="isAuth">
     <div class="col-12">
       <h5>Comments : </h5>
     </div>

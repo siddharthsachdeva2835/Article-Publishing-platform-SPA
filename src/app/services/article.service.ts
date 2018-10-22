@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { JwtService } from './jwt.service';
 import { Injectable, OnInit } from '@angular/core';
@@ -9,11 +10,21 @@ import { map } from 'rxjs/operators';
 export class ArticleService implements OnInit {
   isAuth = false;
   constructor(private api: ApiService, private jwt: JwtService,
-                ) { }
+                private router: Router) { }
 
   addArticle(obj: object) {
     this.api.postRequest('/articles', obj, { headers: {Authorization: 'Token ' +  this.jwt.getToken()}})
-                          .subscribe(data => console.log(data));
+                          .subscribe(data => console.log(data),
+                                  () => {},
+                                () => { this.router.navigate(['home/global']); });
+  }
+
+  updateArticle(slug: string, obj: object) {
+    console.log(obj);
+    this.api.putRequest('/articles/' + slug, obj)
+                          .subscribe(data => console.log(data),
+                                  () => {},
+                                () => { this.router.navigate(['home/global']); });
   }
 
   likeArticle(slug) {
@@ -85,6 +96,11 @@ export class ArticleService implements OnInit {
   deleteComment(id: string, slug: string) {
     return this.api.deleteRequest('/articles/' + slug  + '/comments/' + id, {},
       { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
+  }
+
+  deleteArticle(slug) {
+    return this.api.deleteRequest('/articles/' + slug,
+    { headers: {Authorization: 'Token ' +  this.jwt.getToken()}});
   }
 
   ngOnInit() {

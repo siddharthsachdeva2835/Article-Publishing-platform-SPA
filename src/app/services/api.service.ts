@@ -3,12 +3,13 @@ import { JwtService } from './jwt.service';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { map, take } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(private http: Http,
+  constructor(private http: Http, private httpClient: HttpClient,
                 private jwt: JwtService) { }
 
   getRequest(url: string, header: object = {}) {
@@ -32,13 +33,16 @@ export class ApiService {
   }
 
   putRequest(url: string, obj: object) {
-    this.http.put(environment.api_url + `${url}`, obj);
+    return this.httpClient.put(environment.api_url + `${url}`, obj, { headers: { Authorization: 'Token ' +  this.jwt.getToken() }});
   }
 
   deleteRequest(url: string, obj: object, header: object = {}) {
     const completeUrl: string = environment.api_url + `${url}`;
-    if (header) {
-      return this.http.delete(completeUrl, header);
+    if (this.jwt.getToken()) {
+      console.log(header);
+      console.log(completeUrl);
+
+      return this.httpClient.delete(completeUrl, { headers: { Authorization: 'Token ' +  this.jwt.getToken() }});
     }
     this.http.delete(environment.api_url + `${url}`);
   }

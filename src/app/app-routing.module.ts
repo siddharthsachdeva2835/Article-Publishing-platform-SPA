@@ -1,3 +1,4 @@
+import { UpdateArticleComponent } from './update-article/update-article.component';
 import { YourFeedComponent } from './your-feed/your-feed.component';
 import { SignupComponent } from './auth.shared/signup/signup.component';
 import { AuthComponent } from './auth/auth.component';
@@ -23,9 +24,9 @@ const routes: Routes = [
     { path: 'global', component: GlobalFeedComponent},
     { path: 'tag/:id', component: TagFeedComponent}
   ]},
-
+  { path: 'update/:slug', component: UpdateArticleComponent, canActivate: [AuthGuard] },
   { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:username', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/:username', component: ProfileComponent},
   { path: 'new-article', component: NewArticleComponent, canActivate: [AuthGuard]},
   { path: 'article/:slug', component: ArticleComponent},
 

@@ -1,5 +1,5 @@
 import { UserService } from './../services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from './../services/article.service';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -32,31 +32,44 @@ export class ArticleComponent implements OnInit {
   currentUser: any;
   constructor(private articleService: ArticleService
                 , private activatedRoute: ActivatedRoute
-                  , private userService: UserService) { }
+                  , private userService: UserService
+                    , private router: Router) { }
 
 
-    addComment() {
-      this.articleService.addComment(this.addcomment, this.article.slug).pipe(map(res => res.json())).subscribe(data => {
-        this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
-        .subscribe(dataa => {
-          this.comments = dataa.comments;
-          console.log(this.comments);
-        });
+  editArticle() {
+    this.router.navigate(['update/' + this.article.slug]);
+  }
+
+  addComment() {
+    this.articleService.addComment(this.addcomment, this.article.slug).pipe(map(res => res.json())).subscribe(data => {
+      this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
+      .subscribe(dataa => {
+        this.comments = dataa.comments;
+        console.log(this.comments);
       });
-    }
+    });
+  }
 
-    deleteComment(id) {
-      console.log(id);
+  deleteComment(id) {
+    console.log(id);
 
-      this.articleService.deleteComment(id, this.article.slug)
-      .subscribe(data => {
-        this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
-        .subscribe(dataa => {
-          this.comments = dataa.comments;
-          console.log(this.comments);
-        });
+    this.articleService.deleteComment(id, this.article.slug)
+    .subscribe(data => {
+      this.articleService.getComments(this.activatedRoute.snapshot.paramMap.get('slug'))
+      .subscribe(dataa => {
+        this.comments = dataa.comments;
+        console.log(this.comments);
       });
-    }
+    });
+  }
+
+  deleteArticle() {
+    this.articleService.deleteArticle(this.article.slug).subscribe(
+      () => {},
+      () => {},
+      () => { this.router.navigate(['home/global']); }
+    );
+  }
 
   likeArticle() {
     if ( !this.article.favorited ) {
@@ -65,7 +78,7 @@ export class ArticleComponent implements OnInit {
       this.article.favoritesCount++;
       });
     } else {
-      this.articleService.unlikeArticle(this.article.slug).pipe(map(res => res.json())).subscribe(data => {
+      this.articleService.unlikeArticle(this.article.slug).subscribe(data => {
         this.article.favorited = false;
         this.article.favoritesCount--;
       });
@@ -78,7 +91,7 @@ export class ArticleComponent implements OnInit {
       this.article.author.following = true;
       });
     } else {
-      this.userService.unfollowAuthor(this.article.author.username).pipe(map(res => res.json())).subscribe(data => {
+      this.userService.unfollowAuthor(this.article.author.username).subscribe(data => {
         this.article.author.following = false;
       });
     }

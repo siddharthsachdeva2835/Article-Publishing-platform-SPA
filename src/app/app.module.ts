@@ -23,6 +23,8 @@ import { TagFeedComponent } from './tag-feed/tag-feed.component';
 import { NoAuthGuard } from './services/no-auth-guard.service';
 import { MyarticlesComponent } from './myarticles/myarticles.component';
 import { FavariclesComponent } from './favaricles/favaricles.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdateArticleComponent } from './update-article/update-article.component';
 
 @NgModule({
   declarations: [
@@ -42,11 +44,13 @@ import { FavariclesComponent } from './favaricles/favaricles.component';
     TagFeedComponent,
     MyarticlesComponent,
     FavariclesComponent,
+    UpdateArticleComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
